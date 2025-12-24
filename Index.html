@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css" media="all">
+    *{
+      margin:0;
+      padding:0;
+    }
+    body{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      background:#354664;
+    }
+    h3{
+      text-align:center;
+      font-size:25px;
+      font-weight:300;
+      color:white;
+      margin:10px;
+    }
+    input{
+      width:300px;
+      margin-left:50px;
+      height:40px;
+      background:none;
+      color:white;
+      border:1px solid aliceblue;
+      box-shadow:0px 0px 2px black ;
+     margin-right:20px;
+    border-radius:7px;
+    outline:none;
+   padding-left:6px;
+    }
+    input::placeholder{
+      color:black;
+    }
+
+    button{
+      width:130px;
+      height:40px;
+      font-size:20px;
+      border:none;
+      margin-left:45px;
+      margin-top:20px;
+      color:white;
+      border-radius:15px;
+      box-shadow:0px 0px 3px;
+    }
+    #encode{
+      background:seagreen;
+    }
+    #decode{
+      background:#1e90ff;
+    }
+    .output{
+      width:290px;
+      height:150px;
+      border:1px solid mintcream;
+      margin-left:49px;
+      margin-top:15px;
+      border-radius:15px;
+      padding:7px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h3>Secret Password</h3>
+    <input placeholder="Enter text/numbers">
+    <button id="encode">EnCode</button>
+    <button id="decode">Decode</button>
+    <div class="output">
+      <p>Output will appear here...</p>
+    </div>
+  </div>
+  
+  <script type="text/javascript" charset="utf-8">
+    let input = document.querySelector("input");
+    let encode = document.getElementById("encode");
+    let decode = document.getElementById("decode");
+    let output =document.querySelector(".output");
+    let p = document.querySelector("p");
+    
+    let alphabet = [
+  "a","b","c","d","e","f","g","h","i","j",
+  "k","l","m","n","o","p","q","r","s","t",
+  "u","v","w","x","y","z"
+];
+
+
+encode.addEventListener("click",()=>{
+let result = []
+ let value = input.value.toLowerCase().split("") 
+for(var i = 0; i < value.length; i++){
+   for(var j = 0; j < alphabet.length; j++){
+     if(alphabet[j] === value[i]){
+      result.push(j+1)
+     }
+   }
+}
+ output.innerHTML = result.join(" ")
+});
+
+decode.addEventListener("click",()=>{
+  let result = [];
+  let value = input.value.split(" ")
+  for(var i = 0; i < value.length; i++){
+    let index = parseInt(value[i]) - 1
+    result.push(alphabet[index])
+  }
+  
+  output.innerHTML = result.join(" ")
+});
+  </script>
+</body>
+
+</html>
